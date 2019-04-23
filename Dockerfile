@@ -1,15 +1,8 @@
-FROM node:alpine
+FROM node:11.4.0-alpine
 
-# Environment variable
-ENV ENV_SILENT true
-
-# Create app directory
 WORKDIR /app
-
-# Copy all files
-COPY . /app/
-
-# Install dependency
-RUN npm install --production
-
+COPY package.json /app
+RUN npm install
+COPY . /app
 CMD ["npm", "run", "start"]
+EXPOSE 3333
